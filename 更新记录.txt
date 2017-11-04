@@ -1,0 +1,2 @@
+日期	,						更改,																		生成版本号
+2017-11-04 9:45:51 auth:HuangPingYong ,  Taurus.Core.QueryTool.Query<T> 方法，空或空白字符返回默认值。,  2.2.2.7001
