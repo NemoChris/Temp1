@@ -56,8 +56,8 @@ namespace Taurus.Controllers
             Write(string.Format("Query&lt;string&gt;(\"s3\",\"字符串默认值\")='{0}'<br/>", Query<string>("s3", "字符串默认值")?? "null"));
             Write(string.Format("Query&lt;string&gt;(\"s4\",\"字符串默认值\")='{0}'<br/>", Query<string>("s4", "字符串默认值") ?? "null")); 
             #endregion
-            
-            
+
+            WriteError("异常测试,异常信息：零不能作为除数。");
         }
         public void About() { }
         public void Contact() { }

@@ -213,6 +213,11 @@ namespace Taurus.Core
             }
             return null;
         }
+        protected void WriteError(string msg)
+        {
+            if (string.IsNullOrEmpty(msg)) return;
+            Log.WriteLogToTxt(msg, LogType.Error);
+        }
     }
     public abstract partial class Controller : IController
     {
