@@ -216,7 +216,7 @@ namespace Taurus.Core
         protected void WriteError(string msg)
         {
             if (string.IsNullOrEmpty(msg)) return;
-            Log.WriteLogToTxt(msg, LogType.Error);
+            Log.WriteLogToTxt(msg+Environment.NewLine, LogType.Error);
         }
     }
     public abstract partial class Controller : IController
