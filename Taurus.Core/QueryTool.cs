@@ -63,14 +63,15 @@ namespace Taurus.Core
         }
         public static T Query<T>(string key, T defaultValue, bool filter)
         {
-            string value = HttpContext.Current.Request[key];   
-            if (value == null) { return defaultValue; }            
-            value = value.Trim();
-            if (string.IsNullOrEmpty(value)) { return defaultValue; }
+            string value = HttpContext.Current.Request[key];               
             object result = null;
             Type t = typeof(T);
             if (t.Name == "String")
             {
+                defaultValue = defaultValue == null ? (T)(object)string.Empty : defaultValue;
+                if (value == null) return defaultValue;                 
+                value = value.Trim();
+                if (string.IsNullOrEmpty(value)) return defaultValue; 
                 if (filter)
                 {
                     result = FilterValue(value);
@@ -84,6 +85,9 @@ namespace Taurus.Core
             }
             else
             {
+                if (value == null) return defaultValue;
+                value = value.Trim();
+                if (string.IsNullOrEmpty(value)) return defaultValue; 
                 try
                 {
                     result = ChangeType(value, t);
