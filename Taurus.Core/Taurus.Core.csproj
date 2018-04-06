@@ -60,6 +60,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helper\AppSettings.cs" />
     <Compile Include="MVC\RouteConfig.cs" />
     <Compile Include="MVC\Controller.cs" />
     <Compile Include="MVC\TokenAttribute.cs" />

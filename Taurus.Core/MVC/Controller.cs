@@ -10,6 +10,7 @@ using System.IO;
 using System.Xml;
 using CYQ.Data.Tool;
 using CYQ.Data.Table;
+using Taurus.Core.Helper;
 namespace Taurus.Core
 {
     /// <summary>
@@ -150,8 +151,29 @@ namespace Taurus.Core
             }
             catch (Exception err)
             {
-                WriteLog(err.Message);
-                context.Response.Write(err.Message);
+                string errorMsg = string.Empty;
+                if (err.InnerException!=null)
+                {
+                    errorMsg = string.Format("异常信息：{0}"+Environment.NewLine+"堆栈信息：{1}。"
+                        , err.InnerException.Message
+                        , err.InnerException.StackTrace);
+                }
+                else
+                {
+                    errorMsg = string.Format("异常信息：{0}"+Environment.NewLine+"堆栈信息：{1}。"
+                        , err.Message,
+                        err.StackTrace);
+                }
+                
+                WriteError(errorMsg);
+                if (AppSettings.IsDevMode)//开发者模式
+                {
+                    context.Response.Write(errorMsg);                    
+                }
+                else
+                {
+                    context.Response.Write(err.Message);
+                }                
             }
             if (string.IsNullOrEmpty(context.Response.Charset))
             {

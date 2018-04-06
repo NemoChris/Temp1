@@ -13,6 +13,7 @@ namespace Taurus.Controllers
         [HttpGet]
         public override void Default()
         {
+            throw new Exception("异常测试");
             Write("Hello world");
         }
         /* */
